@@ -1,0 +1,86 @@
+# Flutter / Dart
+# See https://github.com/flutter/flutter/wiki/Addressing-a-packages-pubspec.lock
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub/
+.pub-cache/
+build/
+generated_plugin_registrant.*
+
+# Keep pubspec.lock for apps (recommended). Libraries/packages may ignore it.
+
+# IDEs and editor folders
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Misc
+*.class
+ios/Runner.xcworkspace/
+ios/**/xcuserdata/
+ios/**/xcshareddata/
+*.xcuserstate
+*.log
+*.pyc
+*.swp
+/.metadata
+
+# Flutter generated and plugin files
+**/doc/api/
+**/ios/Flutter/.last_build_id
+**/*.keystore
+**/*.jks
+**/flutter_export_environment.sh
+
+# Android/Gradle
+local.properties
+android/.gradle/
+android/**/build/
+**/gradle-wrapper.properties
+**/gradle-wrapper.jar
+android/*.keystore
+*.jks
+key.properties
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Runner/GeneratedPluginRegistrant.*
+ios/Runner/GoogleService-Info.plist
+
+# macOS
+macos/Flutter/Flutter.framework
+macos/Pods/
+
+# Windows
+windows/flutter/ephemeral/
+windows/Flutter/ephemeral/
+windows/GeneratedPluginRegistrant.*
+
+# Linux
+linux/flutter/ephemeral/
+
+# Web
+web/build/
+
+# Generated files
+/coverage/
+/.dart_tool/**/package_config.json
+
+# Sensitive files / keys
+.env
+.env.*
+google-services.json
+GoogleService-Info.plist
+*.p12
+*.pem
+
+# Android Studio will place build artifacts here
+android/app/debug/
+android/app/profile/
+android/app/release/
