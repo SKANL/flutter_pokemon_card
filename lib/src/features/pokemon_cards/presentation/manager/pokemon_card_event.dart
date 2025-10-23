@@ -1,10 +1,6 @@
 part of 'pokemon_card_bloc.dart';
 
-sealed class PokemonCardEvent extends Equatable {
-  const PokemonCardEvent();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class PokemonCardEvent with _$PokemonCardEvent {
+  const factory PokemonCardEvent.cardsFetched() = CardsFetched;
 }
-
-final class CardsFetched extends PokemonCardEvent {}

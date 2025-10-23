@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import '/src/core/core_domain/entities/pokemon_card.dart';
 // *** ADAPTACIÓN V5 CRÍTICA ***
 // Importamos el UseCase, NO el repositorio
@@ -9,6 +9,7 @@ import 'package:stream_transform/stream_transform.dart';
 
 part 'pokemon_card_event.dart';
 part 'pokemon_card_state.dart';
+part 'pokemon_card_bloc.freezed.dart';
 
 const _throttleDuration = Duration(milliseconds: 100);
 

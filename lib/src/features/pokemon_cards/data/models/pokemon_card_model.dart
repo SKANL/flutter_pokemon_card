@@ -1,55 +1,43 @@
 import '/src/core/core_domain/entities/pokemon_card.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-// NOTA: No estamos usando freezed/json_serializable aquí por simplicidad
-// y para seguir la guía de la práctica, pero podrías usarlos.
+part 'pokemon_card_model.freezed.dart';
+part 'pokemon_card_model.g.dart';
 
-class PokemonCardModel {
-  const PokemonCardModel({
-    required this.id,
-    required this.name,
-    required this.images,
-    this.hp,
-    this.supertype,
-  });
+@freezed
+abstract class PokemonCardModel with _$PokemonCardModel {
+  const factory PokemonCardModel({
+    required String id,
+    required String name,
+    required CardImagesModel images,
+    String? hp,
+    String? supertype,
+  }) = _PokemonCardModel;
 
-  factory PokemonCardModel.fromJson(Map<String, dynamic> json) {
-    return PokemonCardModel(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      images: CardImagesModel.fromJson(json['images'] as Map<String, dynamic>),
-      hp: json['hp'] as String?,
-      supertype: json['supertype'] as String?,
-    );
-  }
+  factory PokemonCardModel.fromJson(Map<String, dynamic> json) =>
+      _$PokemonCardModelFromJson(json);
+}
 
-  final String id;
-  final String name;
-  final CardImagesModel images;
-  final String? hp;
-  final String? supertype;
+@freezed
+abstract class CardImagesModel with _$CardImagesModel {
+  const factory CardImagesModel({
+    required String small,
+    required String large,
+  }) = _CardImagesModel;
 
-  // Este método es el PUENTE entre la capa de Datos y la capa de Dominio
+  factory CardImagesModel.fromJson(Map<String, dynamic> json) =>
+      _$CardImagesModelFromJson(json);
+}
+
+extension PokemonCardModelX on PokemonCardModel {
+  // Puente a la capa de dominio
   PokemonCard toEntity() {
     return PokemonCard(
       id: id,
       name: name,
-      imageUrl: images.large, // Usamos la imagen grande
+      imageUrl: images.large,
       hp: hp,
       supertype: supertype,
     );
   }
-}
-
-class CardImagesModel {
-  const CardImagesModel({required this.small, required this.large});
-
-  factory CardImagesModel.fromJson(Map<String, dynamic> json) {
-    return CardImagesModel(
-      small: json['small'] as String,
-      large: json['large'] as String,
-    );
-  }
-
-  final String small;
-  final String large;
 }

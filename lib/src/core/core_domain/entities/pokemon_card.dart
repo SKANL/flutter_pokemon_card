@@ -1,20 +1,14 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class PokemonCard extends Equatable {
-  const PokemonCard({
-    required this.id,
-    required this.name,
-    required this.imageUrl,
-    this.hp,
-    this.supertype,
-  });
+part 'pokemon_card.freezed.dart';
 
-  final String id;
-  final String name;
-  final String imageUrl;
-  final String? hp;
-  final String? supertype;
-
-  @override
-  List<Object?> get props => [id, name, imageUrl, hp, supertype];
+@freezed
+abstract class PokemonCard with _$PokemonCard {
+  const factory PokemonCard({
+    required String id,
+    required String name,
+    required String imageUrl,
+    String? hp,
+    String? supertype,
+  }) = _PokemonCard;
 }
