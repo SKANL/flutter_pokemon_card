@@ -52,10 +52,12 @@ ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
 ios/Runner/GeneratedPluginRegistrant.*
 ios/Runner/GoogleService-Info.plist
+ios/Flutter/ephemeral/
 
 # macOS
 macos/Flutter/Flutter.framework
 macos/Pods/
+macos/Flutter/ephemeral/
 
 # Windows
 windows/flutter/ephemeral/

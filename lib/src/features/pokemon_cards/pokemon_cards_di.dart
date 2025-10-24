@@ -1,7 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import '/src/core/core_domain/repositories/pokemon_card_repository.dart';
-import '/src/features/pokemon_cards/data/repositories_impl/pokemon_card_repository_impl.dart';
+// repository registrations happen in core DI (drift wrapper + remote impl)
 import '/src/features/pokemon_cards/domain/usecases/get_pokemon_cards_usecase.dart';
 import '/src/features/pokemon_cards/presentation/manager/pokemon_card_bloc.dart';
 import '/src/features/pokemon_cards/pokemon_cards_routes.dart';
@@ -12,6 +11,7 @@ void initPokemonCardsDI(GetIt sl) {
   sl.registerFactory(
     () => PokemonCardBloc(
       getPokemonCards: sl(), // Pide el UseCase a GetIt
+      appDb: sl(),
     ),
   );
 
@@ -23,14 +23,7 @@ void initPokemonCardsDI(GetIt sl) {
     ),
   );
 
-  // Repositories
-  // Le dice a GetIt: "Cuando alguien pida PokemonCardRepository (el contrato),
-  // entrégale una instancia de PokemonCardRepositoryImpl (la implementación)".
-  sl.registerLazySingleton<PokemonCardRepository>(
-    () => PokemonCardRepositoryImpl(
-      dio: sl(), // Pide la instancia de 'Dio' (registrada en core_di.dart)
-    ),
-  );
+  // Repositories: registration moved to core DI (Drift wrapper -> remote impl)
 
   // Rutas
   // Registra la lista de GoRoutes de esta feature

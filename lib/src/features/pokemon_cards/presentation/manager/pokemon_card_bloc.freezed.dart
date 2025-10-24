@@ -55,11 +55,13 @@ extension PokemonCardEventPatterns on PokemonCardEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CardsFetched value)?  cardsFetched,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CardsFetched value)?  cardsFetched,TResult Function( CardsSearched value)?  cardsSearched,TResult Function( CardsCacheUpdated value)?  cardsCacheUpdated,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case CardsFetched() when cardsFetched != null:
-return cardsFetched(_that);case _:
+return cardsFetched(_that);case CardsSearched() when cardsSearched != null:
+return cardsSearched(_that);case CardsCacheUpdated() when cardsCacheUpdated != null:
+return cardsCacheUpdated(_that);case _:
   return orElse();
 
 }
@@ -77,11 +79,13 @@ return cardsFetched(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CardsFetched value)  cardsFetched,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CardsFetched value)  cardsFetched,required TResult Function( CardsSearched value)  cardsSearched,required TResult Function( CardsCacheUpdated value)  cardsCacheUpdated,}){
 final _that = this;
 switch (_that) {
 case CardsFetched():
-return cardsFetched(_that);case _:
+return cardsFetched(_that);case CardsSearched():
+return cardsSearched(_that);case CardsCacheUpdated():
+return cardsCacheUpdated(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +102,13 @@ return cardsFetched(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CardsFetched value)?  cardsFetched,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CardsFetched value)?  cardsFetched,TResult? Function( CardsSearched value)?  cardsSearched,TResult? Function( CardsCacheUpdated value)?  cardsCacheUpdated,}){
 final _that = this;
 switch (_that) {
 case CardsFetched() when cardsFetched != null:
-return cardsFetched(_that);case _:
+return cardsFetched(_that);case CardsSearched() when cardsSearched != null:
+return cardsSearched(_that);case CardsCacheUpdated() when cardsCacheUpdated != null:
+return cardsCacheUpdated(_that);case _:
   return null;
 
 }
@@ -119,10 +125,12 @@ return cardsFetched(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  cardsFetched,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  cardsFetched,TResult Function( String query)?  cardsSearched,TResult Function( List<PokemonCard> cached)?  cardsCacheUpdated,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case CardsFetched() when cardsFetched != null:
-return cardsFetched();case _:
+return cardsFetched();case CardsSearched() when cardsSearched != null:
+return cardsSearched(_that.query);case CardsCacheUpdated() when cardsCacheUpdated != null:
+return cardsCacheUpdated(_that.cached);case _:
   return orElse();
 
 }
@@ -140,10 +148,12 @@ return cardsFetched();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  cardsFetched,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  cardsFetched,required TResult Function( String query)  cardsSearched,required TResult Function( List<PokemonCard> cached)  cardsCacheUpdated,}) {final _that = this;
 switch (_that) {
 case CardsFetched():
-return cardsFetched();case _:
+return cardsFetched();case CardsSearched():
+return cardsSearched(_that.query);case CardsCacheUpdated():
+return cardsCacheUpdated(_that.cached);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +170,12 @@ return cardsFetched();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  cardsFetched,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  cardsFetched,TResult? Function( String query)?  cardsSearched,TResult? Function( List<PokemonCard> cached)?  cardsCacheUpdated,}) {final _that = this;
 switch (_that) {
 case CardsFetched() when cardsFetched != null:
-return cardsFetched();case _:
+return cardsFetched();case CardsSearched() when cardsSearched != null:
+return cardsSearched(_that.query);case CardsCacheUpdated() when cardsCacheUpdated != null:
+return cardsCacheUpdated(_that.cached);case _:
   return null;
 
 }
@@ -202,6 +214,144 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class CardsSearched implements PokemonCardEvent {
+  const CardsSearched(this.query);
+  
+
+ final  String query;
+
+/// Create a copy of PokemonCardEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CardsSearchedCopyWith<CardsSearched> get copyWith => _$CardsSearchedCopyWithImpl<CardsSearched>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CardsSearched&&(identical(other.query, query) || other.query == query));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,query);
+
+@override
+String toString() {
+  return 'PokemonCardEvent.cardsSearched(query: $query)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CardsSearchedCopyWith<$Res> implements $PokemonCardEventCopyWith<$Res> {
+  factory $CardsSearchedCopyWith(CardsSearched value, $Res Function(CardsSearched) _then) = _$CardsSearchedCopyWithImpl;
+@useResult
+$Res call({
+ String query
+});
+
+
+
+
+}
+/// @nodoc
+class _$CardsSearchedCopyWithImpl<$Res>
+    implements $CardsSearchedCopyWith<$Res> {
+  _$CardsSearchedCopyWithImpl(this._self, this._then);
+
+  final CardsSearched _self;
+  final $Res Function(CardsSearched) _then;
+
+/// Create a copy of PokemonCardEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? query = null,}) {
+  return _then(CardsSearched(
+null == query ? _self.query : query // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class CardsCacheUpdated implements PokemonCardEvent {
+  const CardsCacheUpdated(final  List<PokemonCard> cached): _cached = cached;
+  
+
+ final  List<PokemonCard> _cached;
+ List<PokemonCard> get cached {
+  if (_cached is EqualUnmodifiableListView) return _cached;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_cached);
+}
+
+
+/// Create a copy of PokemonCardEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CardsCacheUpdatedCopyWith<CardsCacheUpdated> get copyWith => _$CardsCacheUpdatedCopyWithImpl<CardsCacheUpdated>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CardsCacheUpdated&&const DeepCollectionEquality().equals(other._cached, _cached));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_cached));
+
+@override
+String toString() {
+  return 'PokemonCardEvent.cardsCacheUpdated(cached: $cached)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CardsCacheUpdatedCopyWith<$Res> implements $PokemonCardEventCopyWith<$Res> {
+  factory $CardsCacheUpdatedCopyWith(CardsCacheUpdated value, $Res Function(CardsCacheUpdated) _then) = _$CardsCacheUpdatedCopyWithImpl;
+@useResult
+$Res call({
+ List<PokemonCard> cached
+});
+
+
+
+
+}
+/// @nodoc
+class _$CardsCacheUpdatedCopyWithImpl<$Res>
+    implements $CardsCacheUpdatedCopyWith<$Res> {
+  _$CardsCacheUpdatedCopyWithImpl(this._self, this._then);
+
+  final CardsCacheUpdated _self;
+  final $Res Function(CardsCacheUpdated) _then;
+
+/// Create a copy of PokemonCardEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? cached = null,}) {
+  return _then(CardsCacheUpdated(
+null == cached ? _self._cached : cached // ignore: cast_nullable_to_non_nullable
+as List<PokemonCard>,
+  ));
+}
+
+
+}
 
 /// @nodoc
 mixin _$PokemonCardState {
